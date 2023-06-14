@@ -16,6 +16,14 @@ class QRCode(PluginTemplateExtension):
         obj = self.context['object']
         request = self.context['request']
         url = request.build_absolute_uri(obj.get_absolute_url())
+        
+        if config.get('custom_url') is not None:
+            obj_url = obj.get_absolute_url()
+            # Remove DCIM to save space on QR/Datamatrix
+            if config.get('custom_url_short') is not None:
+                obj_url = obj_url.replace('/dcim', '')
+            url = config.get('custom_url') + obj.get_absolute_url().replace('/dcim', '')
+        
         # get object settings
         obj_cfg = config.get(self.model.replace('dcim.', ''))
         if obj_cfg is None:
