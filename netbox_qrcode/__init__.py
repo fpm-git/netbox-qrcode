@@ -16,6 +16,7 @@ class QRCodeConfig(PluginConfig):
         'font': 'TahomaBold',
         'custom_text': None,
         'custom_url': None,
+        'custom_url_short': None,
         'text_location': 'right',
         'qr_version': 1,
         'qr_error_correction': 0,
